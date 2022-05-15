@@ -40,7 +40,7 @@ public class BoardController {
             board.setSeq(i);
             board.setTitle("제목" + i);
             board.setWriter("테스터");
-            board.setContent(i+ "번 테스트 내용입니다.");
+            board.setContent("의존성을 추가하고 출력 테스트");
             board.setCreateDate(new Date());
             board.setCnt(0);
             boardList.add(board);
