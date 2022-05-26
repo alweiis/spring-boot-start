@@ -13,7 +13,7 @@ public class JPAClient {
         // EntityManager 생성
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Chapter04");
         EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+/*        EntityTransaction tx = em.getTransaction();
         try {
             // Transaction 시작
             tx.begin();
@@ -33,6 +33,16 @@ public class JPAClient {
             e.printStackTrace();
             // Transaction rollback
             tx.rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }*/
+        try {
+            // 글 상세 조회
+            Board searchBoard = em.find(Board.class, 1L);
+            System.out.println("---> " + searchBoard.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             em.close();
             emf.close();
