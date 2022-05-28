@@ -15,7 +15,7 @@ public class JPAClient {
         EntityManager em = emf.createEntityManager();
         // Transaction 생성
         EntityTransaction tx = em.getTransaction();
-        try {
+        /*try {
             // Transaction 시작
             tx.begin();
 
@@ -37,17 +37,36 @@ public class JPAClient {
         } finally {
             em.close();
             emf.close();
-        }
+        }*/
 
-//        try {
-//            // 글 상세 조회
-//            Board searchBoard = em.find(Board.class, 1L);
-//            System.out.println("---> " + searchBoard.toString());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            em.close();
-//            emf.close();
-//        }
+        /*try {
+            // 글 상세 조회
+            Board searchBoard = em.find(Board.class, 1L);
+            System.out.println("---> " + searchBoard.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
+        }*/
+
+        try {
+            // Transaction 시작
+            tx.begin();
+
+            // 수정할 게시글 조회
+            Board board = em.find(Board.class, 1L);
+            board.setTitle("검색한 게시글의 제목 수정");
+
+            // Transaction commit
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Transaction rollback
+            tx.rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
 }
