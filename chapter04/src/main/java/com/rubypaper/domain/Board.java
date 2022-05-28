@@ -9,16 +9,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@TableGenerator(name = "BOARD_SEQ_GENERATOR",
-        table = "ALL_SEQUENCES",
-        pkColumnName = "BOARD_SEQ",
+@SequenceGenerator(name = "BOARD_SEQ_GENERATOR",
+        sequenceName = "BOARD_SEQUENCE",
+        initialValue = 1,
         allocationSize = 1)
 @Getter @Setter
 @ToString
 public class Board {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "BOARD_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "BOARD_SEQ_GENERATOR")
     private Long seq;
 
     private String title;
