@@ -32,7 +32,7 @@ public class BoardRepositoryTest {
         System.out.println(board);
     }
 
-    @Test
+    //@Test
     public void testUpdateBoard() {
         System.out.println("=== 1번 게시글 조회 ===");
         Board board = boardRepo.findById(1L).get();
@@ -40,5 +40,10 @@ public class BoardRepositoryTest {
         System.out.println("=== 1번 게시글 제목 수정 ===");
         board.setTitle("제목을 수정했습니다.");
         boardRepo.save(board);
+    }
+
+    @Test
+    public void testDeleteBoard() {
+        boardRepo.deleteById(1L);
     }
 }
