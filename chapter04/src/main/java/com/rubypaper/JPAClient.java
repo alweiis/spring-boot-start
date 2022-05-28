@@ -50,13 +50,34 @@ public class JPAClient {
             emf.close();
         }*/
 
-        try {
+        /*try {
             // Transaction 시작
             tx.begin();
 
             // 수정할 게시글 조회
             Board board = em.find(Board.class, 1L);
             board.setTitle("검색한 게시글의 제목 수정");
+
+            // Transaction commit
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Transaction rollback
+            tx.rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }*/
+
+        try {
+            // Transaction 시작
+            tx.begin();
+
+            // 삭제할 게시글 조회
+            Board board = em.find(Board.class, 1L);
+
+            // 게시글 삭제
+            em.remove(board);
 
             // Transaction commit
             tx.commit();
