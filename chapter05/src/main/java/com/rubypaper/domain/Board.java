@@ -13,7 +13,7 @@ import java.util.Date;
 public class Board {
 
     @Id @GeneratedValue
-    private Long id;
+    private Long seq;
     private String title;
     private String writer;
     private String content;
