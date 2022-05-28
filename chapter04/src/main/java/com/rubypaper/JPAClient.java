@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.Date;
+import java.util.List;
 
 public class JPAClient {
     public static void main(String[] args) {
@@ -69,7 +70,7 @@ public class JPAClient {
             emf.close();
         }*/
 
-        try {
+        /*try {
             // Transaction 시작
             tx.begin();
 
@@ -78,6 +79,29 @@ public class JPAClient {
 
             // 게시글 삭제
             em.remove(board);
+
+            // Transaction commit
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Transaction rollback
+            tx.rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }*/
+
+        try {
+            // Transaction 시작
+            tx.begin();
+
+            // 글 목록 조회
+            String jqpl = "select b from Board b order by b.seq desc";
+            List<Board> boardList = em.createQuery(jqpl, Board.class).getResultList();
+
+            for(Board brd: boardList) {
+                System.out.println("---> " + brd.toString());
+            }
 
             // Transaction commit
             tx.commit();
